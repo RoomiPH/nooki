@@ -7,6 +7,5 @@ node_modules/*
 *.rbd
 uploads/*
 .env*
-!.env.example
 .npmrc
 dist
