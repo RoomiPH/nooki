@@ -2,7 +2,7 @@
 
 interface ImportMetaEnv {
     readonly VITE_CLIENT_ID: string
-    // add env variables here
+    readonly CLIENT_SECRET: string
 }
 
 interface ImportMeta {
