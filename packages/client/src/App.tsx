@@ -3,12 +3,16 @@ import { AuthenticatedContextProvider } from './hooks/useAuthenticatedContext'
 import { PlayersContextProvider } from './hooks/usePlayers'
 
 import { VoiceChannelActivity } from './components/VoiceChannelActivity'
+import { MainActivity } from './components/MainActivity'
 export default function App() {
+    // return (
+    //     <AuthenticatedContextProvider>
+    //         <PlayersContextProvider>
+    //             <VoiceChannelActivity />
+    //         </PlayersContextProvider>
+    //     </AuthenticatedContextProvider>
+    // )
     return (
-        <AuthenticatedContextProvider>
-            <PlayersContextProvider>
-                <VoiceChannelActivity />
-            </PlayersContextProvider>
-        </AuthenticatedContextProvider>
+        <MainActivity />
     )
 }
