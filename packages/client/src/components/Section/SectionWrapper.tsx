@@ -9,7 +9,7 @@ type Props = {
 
 const SectionWrapper = (props: Props): ReactElement => {
     return (
-        <Card className={classNames("m-1 bg-yellow-50", props.className)}>
+        <Card className={classNames("m-1 bg-yellow-50 shadow shadow-gray-100 border-1 border-gray-200", props.className)}>
             {props.children}
         </Card>
     )
