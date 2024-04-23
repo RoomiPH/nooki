@@ -25,3 +25,7 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
 }
+
+.solid-border {
+    border: solid 3px black;
+}
