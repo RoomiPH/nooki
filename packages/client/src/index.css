@@ -11,6 +11,13 @@
     }
 }
 
+@layer base {
+    p, body, textarea {
+        @apply font-sans !important;
+        font-weight: 600 !important
+    }
+}
+
 html,
 body,
 #root {
