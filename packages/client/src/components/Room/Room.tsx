@@ -1,7 +1,11 @@
 import TextArea from 'antd/es/input/TextArea'
 import SectionHeader, { Section } from '../Section/SectionHeader'
 import SectionWrapper from '../Section/SectionWrapper'
-import { Card, Flex } from 'antd'
+import { Card, Col, Flex, Row } from 'antd'
+import EmptyNookSVG from "../../images/deskEmpty.svg"
+import Occupied1NookSVG from "../../images/deskOccupied1.svg"
+import Occupied2NookSVG from "../../images/deskOccupied2.svg"
+import Occupied3NookSVG from "../../images/deskOccupied3.svg"
 
 export function Room() {
     return (
@@ -25,6 +29,14 @@ export function Room() {
                     leaderboard
                 </Card>
             </Flex>
+            {/** //TODO: needs to polish arrangement of desks */}
+            <Row justify="start">
+                <Col className='m-1'><img src={EmptyNookSVG} width={80} height={'auto'}/></Col>
+                <Col className='m-1'><img src={Occupied1NookSVG} width={80} height={'auto'}/></Col>
+                <Col className='m-1'><img src={Occupied2NookSVG} width={80} height={'auto'}/></Col>
+                <Col className='m-1'><img src={Occupied3NookSVG} width={80} height={'auto'}/></Col>
+                <Col className='m-1'><img src={Occupied3NookSVG} width={80} height={'auto'}/></Col>
+            </Row>
         </SectionWrapper>
     )
 }
