@@ -1,5 +1,5 @@
 import { Card, Col, Flex, Row } from 'antd'
-import { Todo } from './Todo'
+import { Todo } from './todo/Todo'
 
 export function MainActivity() {
     return (

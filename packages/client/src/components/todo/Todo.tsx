@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Button, Input } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
+import './styles.css'
 
 interface TodoItemProps {
     text: string

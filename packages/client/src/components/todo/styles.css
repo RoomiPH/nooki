@@ -1,0 +1,8 @@
+input.ant-input:active,
+input.ant-input:focus {
+    border: solid 1px black !important;
+}
+
+button.ant-btn:hover {
+    background-color: black !important;
+}
