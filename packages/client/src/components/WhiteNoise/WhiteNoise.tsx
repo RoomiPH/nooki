@@ -1,10 +1,10 @@
 import SectionHeader, { Section } from '../Section/SectionHeader'
 import SectionWrapper from '../Section/SectionWrapper'
 
-export function Room() {
+export function WhiteNoise() {
     return (
-        <SectionWrapper className='h-full'>
-            <SectionHeader section={Section.Room} title={"#voice-channel-name"} />
+        <SectionWrapper className='h-1/6'>
+            <SectionHeader section={Section.WhiteNoise} title={"white noise"} />
         </SectionWrapper>
     )
 }
