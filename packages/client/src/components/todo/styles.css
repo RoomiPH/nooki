@@ -9,6 +9,6 @@ button.ant-btn:hover {
 
 .ant-checkbox span.ant-checkbox-inner {
     background-color: black;
-    color: black;
+    accent-color: black !important;
     border-radius: 50%;
 }

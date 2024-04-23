@@ -34,15 +34,6 @@ const todoItems = [
 export function TodoContent() {
     return (
         <section className="flex flex-col w-full">
-            <header className="flex gap-2.5 self-start text-base font-bold tracking-wider text-black">
-                <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/c635e1c7b114c17e6f0ab992e101a9abafa858ef9ed2d78ef20b554f883e754a?apiKey=59d88a1833634011b65c35ae0d649e90&"
-                    alt=""
-                    className="shrink-0 w-8 aspect-square"
-                />
-                <h1 className="my-auto">to-do list</h1>
-            </header>
             <div className="flex gap-2 mt-4">
                 <Input placeholder="Enter todo item..." variant="filled" />
                 <Button
