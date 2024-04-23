@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { ReactElement } from "react";
 
 type Props = {
-    children: ReactElement,
+    children: JSX.Element | JSX.Element[],
     className?: string
 }
 
