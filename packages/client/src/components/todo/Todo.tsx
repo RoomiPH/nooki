@@ -1,24 +1,8 @@
 import * as React from 'react'
 import { Button, Input } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
+import { Checklist } from './Checklist'
 import './styles.css'
-
-interface TodoItemProps {
-    text: string
-    iconSrc: string
-}
-
-const TodoItem: React.FC<TodoItemProps> = ({ text, iconSrc }) => (
-    <div className="flex gap-3 mt-2.5 text-sm tracking-wider text-black">
-        <img
-            loading="lazy"
-            src={iconSrc}
-            alt=""
-            className="shrink-0 aspect-square w-[18px]"
-        />
-        <div className="flex-auto">{text}</div>
-    </div>
-)
 
 const todoItems = [
     {
@@ -68,22 +52,10 @@ export const Todo: React.FC = () => {
                     icon={<PlusOutlined />}
                     size={'large'}
                 />
-                {/* <button
-                    type="submit"
-                    aria-label="Add to-do item"
-                    className="w-[20%]"
-                >
-                    <img
-                        loading="lazy"
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/543af045c387656890179025ff9a6048030259a008cd26d1fed38deeff8ab646?apiKey=59d88a1833634011b65c35ae0d649e90&"
-                        alt=""
-                        className="shrink-0 rounded-md aspect-[1.05] w-[41px]"
-                    />
-                </button> */}
             </div>
             <div className="mt-6">
                 {todoItems.map((item, index) => (
-                    <TodoItem
+                    <Checklist
                         key={index}
                         text={item.text}
                         iconSrc={item.iconSrc}

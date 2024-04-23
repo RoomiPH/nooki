@@ -6,3 +6,9 @@ input.ant-input:focus {
 button.ant-btn:hover {
     background-color: black !important;
 }
+
+.ant-checkbox span.ant-checkbox-inner {
+    background-color: black;
+    color: black;
+    border-radius: 50%;
+}

@@ -7,7 +7,7 @@ export function MainActivity() {
             <Flex vertical className="p-2 h-screen w-1/3">
                 <Card className="m-1 h-1/6">user row</Card>
                 <Card className="m-1 h-2/4">timer row</Card>
-                <Card className="m-1 h-2/4 rounded-lg border border-solid shadow-lg bg-stone-50 border-stone-300 max-md:px-5">
+                <Card className="m-1 h-2/4">
                     <Todo />
                 </Card>
                 <Card className="m-1 h-1/6">music row</Card>
