@@ -1,6 +1,6 @@
-import SectionHeader, { Section } from '../Section/SectionHeader'
-import SectionWrapper from '../Section/SectionWrapper'
-import { TodoContent } from './Content'
+import SectionHeader, { Section } from '../Section/SectionHeader';
+import SectionWrapper from '../Section/SectionWrapper';
+import { TodoContent } from './Content';
 
 export function Todo() {
     return (
@@ -10,5 +10,5 @@ export function Todo() {
                 <TodoContent />
             </div>
         </SectionWrapper>
-    )
+    );
 }

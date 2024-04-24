@@ -1,8 +1,8 @@
-import { Card, Col, Flex, Row } from 'antd'
-import { Room } from './Room/Room'
-import { Timer } from './Timer/Timer'
-import { Todo } from './Todo/Todo'
-import { WhiteNoise } from './WhiteNoise/WhiteNoise'
+import { Card, Col, Flex, Row } from 'antd';
+import { Room } from './Room/Room';
+import { Timer } from './Timer/Timer';
+import { Todo } from './Todo/Todo';
+import { WhiteNoise } from './WhiteNoise/WhiteNoise';
 export function MainActivity() {
     return (
         <Flex className="w-full h-screen p-4">
@@ -16,5 +16,5 @@ export function MainActivity() {
                 <Room />
             </Flex>
         </Flex>
-    )
+    );
 }

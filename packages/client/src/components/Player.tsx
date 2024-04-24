@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { TPlayerOptions } from '../../../server/src/entities/Player'
-import './Player.css'
+import * as React from 'react';
+import { TPlayerOptions } from '../../../server/src/entities/Player';
+import './Player.css';
 
 export function Player({ avatarUri, name, talking }: TPlayerOptions) {
     return (
@@ -17,5 +17,5 @@ export function Player({ avatarUri, name, talking }: TPlayerOptions) {
             </div>
             <div>{name}</div>
         </div>
-    )
+    );
 }

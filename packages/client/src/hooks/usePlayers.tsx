@@ -1,28 +1,28 @@
-import * as React from 'react'
-import { Events } from '@discord/embedded-app-sdk'
-import { Player as PlayerState } from '../../../server/src/entities/Player'
+import * as React from 'react';
+import { Events } from '@discord/embedded-app-sdk';
+import { Player as PlayerState } from '../../../server/src/entities/Player';
 
-import { useAuthenticatedContext } from '../hooks/useAuthenticatedContext'
-import { discordSdk } from '../discordSdk'
+import { useAuthenticatedContext } from '../hooks/useAuthenticatedContext';
+import { discordSdk } from '../discordSdk';
 
-const PlayersContext = React.createContext<PlayerState[]>([])
+const PlayersContext = React.createContext<PlayerState[]>([]);
 
 export function PlayersContextProvider({
     children,
 }: {
-    children: React.ReactNode
+    children: React.ReactNode;
 }) {
-    const players = usePlayersContextSetup()
+    const players = usePlayersContextSetup();
 
     return (
         <PlayersContext.Provider value={players}>
             {children}
         </PlayersContext.Provider>
-    )
+    );
 }
 
 export function usePlayers() {
-    return React.useContext(PlayersContext)
+    return React.useContext(PlayersContext);
 }
 
 /**
@@ -30,9 +30,9 @@ export function usePlayers() {
  * One improvement worth considering is using a map instead of an array
  */
 function usePlayersContextSetup() {
-    const [players, setPlayers] = React.useState<PlayerState[]>([])
+    const [players, setPlayers] = React.useState<PlayerState[]>([]);
 
-    const authenticatedContext = useAuthenticatedContext()
+    const authenticatedContext = useAuthenticatedContext();
 
     React.useEffect(() => {
         try {
@@ -40,22 +40,22 @@ function usePlayersContextSetup() {
                 player,
                 _key
             ) {
-                setPlayers((players) => [...players, player])
+                setPlayers((players) => [...players, player]);
                 player.onChange = function (changes) {
                     setPlayers((players) =>
                         players.map((p) => {
                             if (p.userId !== player.userId) {
-                                return p
+                                return p;
                             }
                             changes.forEach(({ field, value }) => {
                                 // @ts-expect-error
-                                p[field] = value
-                            })
-                            return p
+                                p[field] = value;
+                            });
+                            return p;
                         })
-                    )
-                }
-            }
+                    );
+                };
+            };
 
             authenticatedContext.room.state.players.onRemove = function (
                 player,
@@ -63,40 +63,40 @@ function usePlayersContextSetup() {
             ) {
                 setPlayers((players) => [
                     ...players.filter((p) => p.userId !== player.userId),
-                ])
-            }
+                ]);
+            };
 
             authenticatedContext.room.onLeave((code) => {
-                console.log("You've been disconnected.", code)
-            })
+                console.log("You've been disconnected.", code);
+            });
         } catch (e) {
-            console.error("Couldn't connect:", e)
+            console.error("Couldn't connect:", e);
         }
-    }, [authenticatedContext.room])
+    }, [authenticatedContext.room]);
 
     React.useEffect(() => {
         function handleSpeakingStart({ user_id }: { user_id: string }) {
             if (authenticatedContext.user.id === user_id) {
-                authenticatedContext.room.send('startTalking')
+                authenticatedContext.room.send('startTalking');
             }
         }
         function handleSpeakingStop({ user_id }: { user_id: string }) {
             if (authenticatedContext.user.id === user_id) {
-                authenticatedContext.room.send('stopTalking')
+                authenticatedContext.room.send('stopTalking');
             }
         }
 
         discordSdk.subscribe(Events.SPEAKING_START, handleSpeakingStart, {
             channel_id: discordSdk.channelId,
-        })
+        });
         discordSdk.subscribe(Events.SPEAKING_STOP, handleSpeakingStop, {
             channel_id: discordSdk.channelId,
-        })
+        });
         return () => {
-            discordSdk.unsubscribe(Events.SPEAKING_START, handleSpeakingStart)
-            discordSdk.unsubscribe(Events.SPEAKING_STOP, handleSpeakingStop)
-        }
-    }, [authenticatedContext])
+            discordSdk.unsubscribe(Events.SPEAKING_START, handleSpeakingStart);
+            discordSdk.unsubscribe(Events.SPEAKING_STOP, handleSpeakingStop);
+        };
+    }, [authenticatedContext]);
 
-    return players
+    return players;
 }

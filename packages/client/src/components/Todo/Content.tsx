@@ -1,7 +1,7 @@
-import { Button, Input } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
-import { Checklist } from './Checklist'
-import './styles.css'
+import { Button, Input } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { Checklist } from './Checklist';
+import './styles.css';
 
 const todoItems = [
     {
@@ -29,7 +29,7 @@ const todoItems = [
         iconSrc:
             'https://cdn.builder.io/api/v1/image/assets/TEMP/5929da3c2fc6a6f3439de3317322646913574e7a53c9bd5ff0ce27900bc57ae5?apiKey=59d88a1833634011b65c35ae0d649e90&',
     },
-]
+];
 
 export function TodoContent() {
     return (
@@ -49,5 +49,5 @@ export function TodoContent() {
                 ))}
             </div>
         </section>
-    )
+    );
 }

@@ -1,10 +1,10 @@
-import * as React from 'react'
-import { Player } from './Player'
-import { usePlayers } from '../hooks/usePlayers'
-import './VoiceChannelActivity.css'
+import * as React from 'react';
+import { Player } from './Player';
+import { usePlayers } from '../hooks/usePlayers';
+import './VoiceChannelActivity.css';
 
 export function VoiceChannelActivity() {
-    const players = usePlayers()
+    const players = usePlayers();
 
     return (
         <div className="voice__channel__container">
@@ -12,5 +12,5 @@ export function VoiceChannelActivity() {
                 <Player key={p.userId} {...p} />
             ))}
         </div>
-    )
+    );
 }
