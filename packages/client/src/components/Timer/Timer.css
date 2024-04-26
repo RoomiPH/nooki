@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 1fr; 
   grid-template-rows: auto auto;
   gap: 10px;
-  padding: 10%;
+  padding: 5%;
 }
 
 .grid-item:first-child { 
@@ -22,8 +22,24 @@
 }
 
 .grid-item {
-  background-color: #f4f4f4;
-  border: 1px solid #ccc;
+  /* background-color: #8a8585; */
+  /* border: 1px solid #ccc; */
   padding: 20px;
   text-align: center;
 }
+
+.button-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: auto auto;
+  margin-top: 14px;
+}
+.button-item {
+  background-color: #f2f2f2;
+  border-radius: 10%;
+  padding: 10px;
+  text-align: center;
+  margin: auto;
+  cursor: pointer;
+}
+
