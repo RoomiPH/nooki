@@ -43,3 +43,23 @@
   cursor: pointer;
 }
 
+.elapsed-time-container {
+    margin-top: 10px;
+    text-align: start;
+    margin-left: 10px;
+    font-weight: lighter;
+}
+
+.timer-setting-label {
+    margin-top: 30%;
+}
+
+.reminder-container {
+    text-align: start;
+}
+
+.elapsed-time-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: auto auto;
+}
