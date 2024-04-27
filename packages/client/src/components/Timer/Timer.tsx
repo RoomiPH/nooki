@@ -93,6 +93,7 @@ export function Timer() {
                 return;
             }
             if (secondsLeftRef.current === 0) {
+                //to add sound when switching mode
                 return switchMode();
             }
 
@@ -103,7 +104,7 @@ export function Timer() {
     }, []);
 
     const totalSeconds = mode === 'work' ? 25 * 60 : 5 * 60;
-    const percentage = Math.round(secondsLeft/totalSeconds) * 100;
+    const percentage = (secondsLeft/totalSeconds) * 100;
 
     const timerLeftTime = convertToHourMinutesSeconds(secondsLeft);
     const focusedElapsedTime = convertToHourMinutesSeconds(focusedElapsedSeconds);
@@ -131,7 +132,7 @@ export function Timer() {
                         <div className="elapsed-time-container">
                             <div className="elapsed-time-item">
                             <span className="focus-label">
-                                focus 
+                                focus
                             </span> 
                              <span className="focus-label">
                                 {focusedElapsedTime.hours > 0 ? focusedElapsedTime.hours < 10 ? `0 ${focusedElapsedTime.hours}` : focusedElapsedTime.hours : ''}    {focusedElapsedTime.minutes} : {focusedElapsedTime.seconds < 10 ? `0 ${focusedElapsedTime.seconds}` : focusedElapsedTime.seconds }
@@ -151,7 +152,7 @@ export function Timer() {
                         <CircularProgressbarWithChildren
                             value={percentage} 
                             styles={buildStyles({
-                                pathColor: `rgba(255, 240, 185, ${percentage / 100})`,
+                                pathColor: `rgba(255, 240, 185, ${percentage})`,
                                 textColor: '#000000',
                             })}
                         >
