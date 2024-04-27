@@ -7,6 +7,7 @@ import './Timer.css'
 import PauseIcon from '../Icons/PauseIcon';
 import RestartIcon from '../Icons/RestartIcon';
 import OffIcon from '../Icons/OffIcon';
+import Switch from '../Switch/Switch';
 
 export function Timer() {
     const [isPaused, setIsPaused] = useState(true);
@@ -15,11 +16,23 @@ export function Timer() {
     const [secondsLeft, setSecondsLeft] = useState(0);
     const [focusedElapsedSeconds, setFocusElapsedSeconds] = useState(0);
     const [breakElapsedSeconds, setBreakElapsedSeconds] = useState(0);
+    const [isStandReminderChecked, setIsStandReminderChecked] = useState(false);
+    const [isDrinkReminderChecked, setIsDrinkReminderChecked] = useState(false);
+
     const secondsLeftRef = useRef(secondsLeft);
     const focusedElapsedSecondsRef = useRef(focusedElapsedSeconds);
     const breakElapsedSecondsRef = useRef(breakElapsedSeconds);
     const isPausedRef = useRef(isPaused);
     const modeRef = useRef(mode);
+
+    const toggleReminder = (type: string, nextChecked: any) => {
+        if (type === 'stand') {
+            setIsStandReminderChecked(!nextChecked);
+        }
+        else if (type === 'water') {
+            setIsDrinkReminderChecked(!nextChecked);
+        }
+    };
 
     function switchMode() {
         const nextMode = modeRef.current === 'work' ? 'break' : 'work';
@@ -135,7 +148,7 @@ export function Timer() {
                                 focus
                             </span> 
                              <span className="focus-label">
-                                {focusedElapsedTime.hours > 0 ? focusedElapsedTime.hours < 10 ? `0 ${focusedElapsedTime.hours}` : focusedElapsedTime.hours : ''}    {focusedElapsedTime.minutes} : {focusedElapsedTime.seconds < 10 ? `0 ${focusedElapsedTime.seconds}` : focusedElapsedTime.seconds }
+                                {focusedElapsedTime.hours > 0 ? focusedElapsedTime.hours < 10 ? `0${focusedElapsedTime.hours}` : focusedElapsedTime.hours : ''}    {focusedElapsedTime.minutes} : {focusedElapsedTime.seconds < 10 ? `0${focusedElapsedTime.seconds}` : focusedElapsedTime.seconds }
                              </span>
                              </div>
                             <div className="elapsed-time-item">
@@ -143,7 +156,7 @@ export function Timer() {
                                     breaks
                                 </span> 
                                 <span className="break-label">
-                                    {breakElaspedTime.hours > 0 ? breakElaspedTime.hours < 10 ? `0 ${breakElaspedTime.hours}` : breakElaspedTime.hours : ''}    {breakElaspedTime.minutes} : {breakElaspedTime.seconds < 10 ? `0 ${breakElaspedTime.seconds}` : breakElaspedTime.seconds }
+                                    {breakElaspedTime.hours > 0 ? breakElaspedTime.hours < 10 ? `0${breakElaspedTime.hours}` : breakElaspedTime.hours : ''}    {breakElaspedTime.minutes} : {breakElaspedTime.seconds < 10 ? `0${breakElaspedTime.seconds}` : breakElaspedTime.seconds }
                                 </span>
                             </div>
                         </div>
@@ -157,7 +170,7 @@ export function Timer() {
                             })}
                         >
                             <div style={{ fontSize: '25px', cursor: 'pointer' }}>
-                            {timerLeftTime.hours > 0 ? timerLeftTime.hours < 10 ? `0 ${timerLeftTime.hours}` : timerLeftTime.hours : ''}    {timerLeftTime.minutes} : {timerLeftTime.seconds < 10 ? `0 ${timerLeftTime.seconds}` : timerLeftTime.seconds }
+                            {timerLeftTime.hours > 0 ? timerLeftTime.hours < 10 ? `0${timerLeftTime.hours}` : timerLeftTime.hours : ''}    {timerLeftTime.minutes} : {timerLeftTime.seconds < 10 ? `0${timerLeftTime.seconds}` : timerLeftTime.seconds }
                             </div>
                         </CircularProgressbarWithChildren>
                         <div className="button-container">
@@ -183,9 +196,17 @@ export function Timer() {
                     <div className="grid-item">
                         <div className="reminder-container">
                             <div className="reminder-item">
+                             <Switch
+                             value={isStandReminderChecked}
+                             onClick={() => toggleReminder("stand", isStandReminderChecked)}
+                             />
                                 Remind me to stand every hour
                             </div>
                             <div className="reminder-item">
+                                <Switch
+                                value={isDrinkReminderChecked}
+                                onClick={() => toggleReminder("water", isDrinkReminderChecked)}
+                                />
                                 Remind me to drink every 30 mins.
                             </div>
                         </div>

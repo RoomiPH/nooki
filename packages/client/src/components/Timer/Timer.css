@@ -54,12 +54,18 @@
     margin-top: 30%;
 }
 
-.reminder-container {
-    text-align: start;
-}
-
 .elapsed-time-item {
     display: grid;
     grid-template-columns: 1fr 1fr; 
     grid-template-rows: auto auto;
+}
+
+.reminder-item {
+    display: inline-block;
+    text-align: start;
+}
+
+.reminder-item > .switch, .reminder-item > span {
+    display: inline-block;
+    vertical-align: middle;
 }
