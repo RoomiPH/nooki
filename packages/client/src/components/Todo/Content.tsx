@@ -1,51 +1,76 @@
-import { Button, Input } from 'antd';
+import { Button, Input, InputRef } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Checklist } from './Checklist';
 import './styles.css';
+import { useCallback, useRef, useState } from 'react';
 
-const todoItems = [
-    {
-        text: 'finish activity 3.2',
-        iconSrc:
-            'https://cdn.builder.io/api/v1/image/assets/TEMP/ff9066aa490888b893fadb8d3cc7ae94d282d4f55c0bf4f9bfb0762debd3caa0?apiKey=59d88a1833634011b65c35ae0d649e90&',
-    },
-    {
-        text: 'start working on English essay',
-        iconSrc:
-            'https://cdn.builder.io/api/v1/image/assets/TEMP/61a43911bc852a539535a69f6df11a0a6aebd9f127165e911733f09104690af1?apiKey=59d88a1833634011b65c35ae0d649e90&',
-    },
-    {
-        text: 'answer math problems',
-        iconSrc:
-            'https://cdn.builder.io/api/v1/image/assets/TEMP/0bb4de1ffc9c1d09738735426b13ac5f27e43a17a0ab3878b7b241776895d4ae?apiKey=59d88a1833634011b65c35ae0d649e90&',
-    },
-    {
-        text: 'submit physics activity 12.3 in pdf',
-        iconSrc:
-            'https://cdn.builder.io/api/v1/image/assets/TEMP/4368663bbe8c0d5942981bcae728b0d1ff0dd6631b87e5033329053a645d85c5?apiKey=59d88a1833634011b65c35ae0d649e90&',
-    },
-    {
-        text: 'answer physics activty 12.3',
-        iconSrc:
-            'https://cdn.builder.io/api/v1/image/assets/TEMP/5929da3c2fc6a6f3439de3317322646913574e7a53c9bd5ff0ce27900bc57ae5?apiKey=59d88a1833634011b65c35ae0d649e90&',
-    },
-];
+export interface TodoItem {
+    task: string;
+    isDone: boolean;
+}
+export interface TodoList {
+    todo: TodoItem[];
+}
 
 export function TodoContent() {
+    const inputRef = useRef<InputRef>(null);
+    const [todoTasks, setTodoTasks] = useState<TodoList>(sessionJsonParser());
+
+    function sessionJsonParser(): TodoList {
+        const todoList: string | null = sessionStorage.getItem('todo-list');
+        const modifiedTodoList = todoList ? JSON.parse(todoList) : { todo: [] };
+        return modifiedTodoList;
+    }
+
+    const onSubmitTodo = useCallback(() => {
+        if (inputRef.current?.input?.value) {
+            const newTask = {
+                task: inputRef.current?.input?.value,
+                isDone: false,
+            };
+
+            setTodoTasks((prevList) => {
+                const newTodoList: TodoList = {
+                    todo: [
+                        ...prevList.todo,
+                        {
+                            task: inputRef.current?.input?.value,
+                            isDone: false,
+                        },
+                    ],
+                } as TodoList;
+
+                sessionStorage.setItem(
+                    'todo-list',
+                    JSON.stringify(newTodoList)
+                );
+                return newTodoList;
+            });
+        } else {
+            console.log('Please input a task');
+        }
+    }, []);
+
     return (
         <section className="flex flex-col w-full">
             <div className="flex gap-2 mt-4">
-                <Input placeholder="Enter todo item..." variant="filled" />
+                <Input
+                    placeholder="Enter todo item..."
+                    id="todo-input"
+                    variant="filled"
+                    ref={inputRef}
+                />
                 <Button
                     type="primary"
                     className="bg-zinc-100 text-black"
                     icon={<PlusOutlined />}
                     size={'large'}
+                    onClick={onSubmitTodo}
                 />
             </div>
             <div className="mt-6">
-                {todoItems.map((item, index) => (
-                    <Checklist key={index} />
+                {todoTasks.todo.map((datum, index) => (
+                    <Checklist key={index + 1} task={datum.task} />
                 ))}
             </div>
         </section>

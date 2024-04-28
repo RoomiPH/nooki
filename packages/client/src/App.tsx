@@ -9,7 +9,7 @@ export default function App() {
     return (
         <AuthenticatedContextProvider>
             <PlayersContextProvider>
-                <VoiceChannelActivity />
+                {/* <VoiceChannelActivity /> */}
                 <MainActivity />
             </PlayersContextProvider>
         </AuthenticatedContextProvider>
