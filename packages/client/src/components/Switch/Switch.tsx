@@ -1,5 +1,5 @@
 import React from "react";
-const SWITCH_WIDTH_PX = 30;
+const SWITCH_WIDTH_PX = 35;
 const HANDLE_DIAMETER_PX = 10;
 const SWITCH_OFFSET_PX = 3;
 

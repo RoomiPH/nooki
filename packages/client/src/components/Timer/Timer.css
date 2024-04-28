@@ -60,6 +60,12 @@
     grid-template-rows: auto auto;
 }
 
+.reminder-container {
+    width: 300px;
+    text-align: start;
+    margin: 0 auto;
+}
+
 .reminder-item {
     display: inline-block;
     text-align: start;

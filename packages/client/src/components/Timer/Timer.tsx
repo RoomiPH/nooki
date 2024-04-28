@@ -3,21 +3,24 @@ import SectionHeader, { Section } from '../Section/SectionHeader';
 import SectionWrapper from '../Section/SectionWrapper';
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import './Timer.css'
+import './Timer.css';
+import useSound from 'use-sound';
 import PauseIcon from '../Icons/PauseIcon';
 import RestartIcon from '../Icons/RestartIcon';
 import OffIcon from '../Icons/OffIcon';
 import Switch from '../Switch/Switch';
+import alarm from '../../sounds/alarm.mp3';
 
 export function Timer() {
     const [isPaused, setIsPaused] = useState(true);
     const [isOff, setIsOff] = useState(true);
-    const [mode, setMode] = useState('break'); //work/break/null
+    const [mode, setMode] = useState('break'); //types: work/break/null
     const [secondsLeft, setSecondsLeft] = useState(0);
     const [focusedElapsedSeconds, setFocusElapsedSeconds] = useState(0);
     const [breakElapsedSeconds, setBreakElapsedSeconds] = useState(0);
     const [isStandReminderChecked, setIsStandReminderChecked] = useState(false);
     const [isDrinkReminderChecked, setIsDrinkReminderChecked] = useState(false);
+    const [playAlarm] = useSound(alarm);
 
     const secondsLeftRef = useRef(secondsLeft);
     const focusedElapsedSecondsRef = useRef(focusedElapsedSeconds);
@@ -35,6 +38,7 @@ export function Timer() {
     };
 
     function switchMode() {
+        playAlarm();
         const nextMode = modeRef.current === 'work' ? 'break' : 'work';
         const nextSeconds = (nextMode === 'work' ? 25 : 5) * 60; //to change to use vars, add setting for timer
         setMode(nextMode);
@@ -106,7 +110,6 @@ export function Timer() {
                 return;
             }
             if (secondsLeftRef.current === 0) {
-                //to add sound when switching mode
                 return switchMode();
             }
 
@@ -200,14 +203,14 @@ export function Timer() {
                              value={isStandReminderChecked}
                              onClick={() => toggleReminder("stand", isStandReminderChecked)}
                              />
-                                Remind me to stand every hour
+                                <span style={{marginLeft: '25px'}}>Remind me to stand every hour</span>
                             </div>
                             <div className="reminder-item">
                                 <Switch
                                 value={isDrinkReminderChecked}
                                 onClick={() => toggleReminder("water", isDrinkReminderChecked)}
                                 />
-                                Remind me to drink every 30 mins.
+                                <span style={{marginLeft: '25px'}}>Remind me to drink every 30 mins.</span>
                             </div>
                         </div>
                     </div>
