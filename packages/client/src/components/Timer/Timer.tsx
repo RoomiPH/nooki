@@ -10,6 +10,8 @@ import RestartIcon from '../Icons/RestartIcon';
 import OffIcon from '../Icons/OffIcon';
 import Switch from '../Switch/Switch';
 import alarm from '../../sounds/alarm.mp3';
+import PlayIcon from '../Icons/PlayIcon';
+import Modal from '../Modal/Modal';
 
 export function Timer() {
     const [isPaused, setIsPaused] = useState(true);
@@ -104,7 +106,7 @@ export function Timer() {
     useEffect( () => {
         initTimer();
 
-        const interval = setInterval(() => {
+        const timerInterval = setInterval(() => {
             if (isPausedRef.current) {
                 console.log("paused")
                 return;
@@ -116,7 +118,23 @@ export function Timer() {
             tick();
         }, 1000);
 
-        return () => clearInterval(interval);
+        const standReminderInterval = setInterval(() => {
+            if (isStandReminderChecked) {
+                playAlarm();
+            }
+        }, 3600 * 1000);
+
+        const drinkReminderInterval = setInterval(() => {
+            if (isDrinkReminderChecked) {
+                playAlarm();
+            }
+        }, 3600 * 1000);
+
+        return () => {
+            clearInterval(timerInterval),
+            clearInterval(standReminderInterval),
+            clearInterval(drinkReminderInterval)
+        };
     }, []);
 
     const totalSeconds = mode === 'work' ? 25 * 60 : 5 * 60;
@@ -184,7 +202,7 @@ export function Timer() {
                                     </span>
                                 ) : (
                                     <span className="pause-container" onClick={() => toggleTimer(false)}>
-                                        <PauseIcon/> {/** To replace to play icon */}
+                                        <PlayIcon/>
                                     </span>
                                 )}
                             </div>
@@ -217,6 +235,11 @@ export function Timer() {
                 </div>
 
                 )}
+            <Modal isOpen={true} hasCloseBtn={true}>
+                <div>
+                    Hello
+                </div>
+            </Modal>
         </SectionWrapper>
     )
 }
