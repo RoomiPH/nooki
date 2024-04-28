@@ -6,27 +6,27 @@ import { useCallback, useRef, useState } from 'react';
 
 export interface TodoItem {
     task: string;
-    isDone: boolean;
+    isChecked: boolean;
 }
 export interface TodoList {
     todo: TodoItem[];
+}
+
+export function sessionJsonParser(): TodoList {
+    const todoList: string | null = sessionStorage.getItem('todo-list');
+    const modifiedTodoList = todoList ? JSON.parse(todoList) : { todo: [] };
+    return modifiedTodoList;
 }
 
 export function TodoContent() {
     const inputRef = useRef<InputRef>(null);
     const [todoTasks, setTodoTasks] = useState<TodoList>(sessionJsonParser());
 
-    function sessionJsonParser(): TodoList {
-        const todoList: string | null = sessionStorage.getItem('todo-list');
-        const modifiedTodoList = todoList ? JSON.parse(todoList) : { todo: [] };
-        return modifiedTodoList;
-    }
-
     const onSubmitTodo = useCallback(() => {
         if (inputRef.current?.input?.value) {
             const newTask = {
                 task: inputRef.current?.input?.value,
-                isDone: false,
+                isChecked: false,
             };
 
             setTodoTasks((prevList) => {
@@ -35,7 +35,7 @@ export function TodoContent() {
                         ...prevList.todo,
                         {
                             task: inputRef.current?.input?.value,
-                            isDone: false,
+                            isChecked: false,
                         },
                     ],
                 } as TodoList;
@@ -70,7 +70,12 @@ export function TodoContent() {
             </div>
             <div className="mt-6">
                 {todoTasks.todo.map((datum, index) => (
-                    <Checklist key={index + 1} task={datum.task} />
+                    <Checklist
+                        key={index + 1}
+                        {...datum}
+                        index={index}
+                        setTodoTasks={setTodoTasks}
+                    />
                 ))}
             </div>
         </section>
