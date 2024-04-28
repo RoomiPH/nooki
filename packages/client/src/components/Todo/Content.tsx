@@ -68,7 +68,7 @@ export function TodoContent() {
                     onClick={onSubmitTodo}
                 />
             </div>
-            <div className="mt-6">
+            <div className="mt-6 overflow-y-auto h-40">
                 {todoTasks.todo.map((datum, index) => (
                     <Checklist
                         key={index + 1}
