@@ -2,7 +2,7 @@ import { Button, Input, InputRef } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Checklist } from './Checklist';
 import './styles.css';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export interface TodoItem {
     task: string;
@@ -20,7 +20,18 @@ export function sessionJsonParser(): TodoList {
 
 export function TodoContent() {
     const inputRef = useRef<InputRef>(null);
-    const [todoTasks, setTodoTasks] = useState<TodoList>(sessionJsonParser());
+    const [todoTasks, setTodoTasks] = useState<TodoList>({ todo: [] });
+
+    useEffect(() => {
+        // this will empty the todo list every start of discord activity
+        setTodoTasks({ todo: [] });
+        // for testing purposes: display what's inside session
+        // setTodoTasks(sessionJsonParser());
+
+        return () => {
+            setTodoTasks({ todo: [] });
+        };
+    }, []);
 
     const onSubmitTodo = useCallback(() => {
         if (inputRef.current?.input?.value) {
