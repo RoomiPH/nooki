@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Quicksand";
+    src: url("./fonts/Quicksand/Quicksand-VariableFont_wght.ttf");
+  }
+
 @layer base {
     h1,
     h2,
@@ -15,7 +20,7 @@
 }
 
 @layer base {
-    p, body, textarea {
+    p, body, textarea, div {
         @apply font-sans !important;
         font-weight: 600 !important
     }
