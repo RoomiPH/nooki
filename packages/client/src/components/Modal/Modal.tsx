@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
-import CloseModalIcon from '../Icons/closeModalIcon';
+import CloseModalIcon from '../Icons/CloseModalIcon';
 
 type Props = {
     isOpen: boolean
@@ -29,18 +29,20 @@ const handleKeyDown = (event: React.KeyboardEvent<HTMLDialogElement>) => {
 
  useEffect(() => {
   const modalElement = modalRef.current;
+  setModalOpen(props.isOpen);
   if (modalElement) {
     if (isModalOpen) {
+        console.log("opened")
       modalElement.showModal();
     } else {
       modalElement.close();
     }
   }
-}, [isModalOpen]);
+}, [isModalOpen, props.isOpen]);
 
 
   return (
-  <dialog ref={modalRef} onKeyDown={handleKeyDown} className='bg-yellow-50 rounded-md p-3 min-w-60' >
+  <dialog ref={modalRef} onKeyDown={handleKeyDown} className="bg-yellow-50 rounded-md p-3 min-w-80" >
     <div 
         className={props.className}
     >

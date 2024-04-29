@@ -12,6 +12,8 @@ import Switch from '../Switch/Switch';
 import alarm from '../../sounds/alarm.mp3';
 import PlayIcon from '../Icons/PlayIcon';
 import Modal from '../Modal/Modal';
+import ReminderIcon from '../Icons/ReminderIcon';
+import ButtonWrapper from '../Button/Button';
 
 export function Timer() {
     const [isPaused, setIsPaused] = useState(true);
@@ -22,6 +24,8 @@ export function Timer() {
     const [breakElapsedSeconds, setBreakElapsedSeconds] = useState(0);
     const [isStandReminderChecked, setIsStandReminderChecked] = useState(false);
     const [isDrinkReminderChecked, setIsDrinkReminderChecked] = useState(false);
+    const [openStandReminder, setOpenStandReminder] = useState(false);
+    const [openDrinkReminder, setOpenDrinkReminder] = useState(false);
     const [playAlarm] = useSound(alarm);
 
     const secondsLeftRef = useRef(secondsLeft);
@@ -76,6 +80,15 @@ export function Timer() {
         setIsPaused(isPausedVal);
     }
 
+    function handleReminderModal(type: string, isOpenVal: boolean) {
+        if(type === "stand") {
+            setOpenStandReminder(isOpenVal);
+        }
+        if(type === "drink") {
+            setOpenDrinkReminder(isOpenVal);
+        }
+    }
+
     function convertToHourMinutesSeconds(secondsVal: number) {
         let hours = 0;
         let minutes = Math.floor(secondsVal / 60);
@@ -108,7 +121,6 @@ export function Timer() {
 
         const timerInterval = setInterval(() => {
             if (isPausedRef.current) {
-                console.log("paused")
                 return;
             }
             if (secondsLeftRef.current === 0) {
@@ -121,12 +133,14 @@ export function Timer() {
         const standReminderInterval = setInterval(() => {
             if (isStandReminderChecked) {
                 playAlarm();
+                return handleReminderModal("stand", true);
             }
         }, 3600 * 1000);
 
         const drinkReminderInterval = setInterval(() => {
             if (isDrinkReminderChecked) {
                 playAlarm();
+                return handleReminderModal("drink", true);
             }
         }, 3600 * 1000);
 
@@ -135,7 +149,7 @@ export function Timer() {
             clearInterval(standReminderInterval),
             clearInterval(drinkReminderInterval)
         };
-    }, []);
+    }, [isStandReminderChecked, isDrinkReminderChecked, openDrinkReminder, openStandReminder]);
 
     const totalSeconds = mode === 'work' ? 25 * 60 : 5 * 60;
     const percentage = (secondsLeft/totalSeconds) * 100;
@@ -235,9 +249,48 @@ export function Timer() {
                 </div>
 
                 )}
-            <Modal isOpen={true} hasCloseBtn={true}>
-                <div>
-                    Hello
+            <Modal isOpen={openStandReminder} hasCloseBtn={true} onClose={() => handleReminderModal("stand", false)}>
+                <div className="m-2">
+                    <div className="m-10 mx-20">
+                        <div className="flex justify-center grid-cols-1">
+                            <ReminderIcon/>
+                        </div>
+                        <div className="flex justify-center grid-cols-1 mt-2 ">
+                            Time's Up!
+                        </div>
+                        <div className="flex justify-center grid-cols-1 mt-2 font-light">
+                            Please stand up.
+                        </div>
+                        </div>
+                    <div className="flex justify-end"> 
+                    <ButtonWrapper onClick={() => handleReminderModal("stand", false)}>
+                        <>
+                            repeat
+                        </>
+                    </ButtonWrapper>
+                    </div>
+                </div>
+            </Modal>
+            <Modal isOpen={openDrinkReminder} hasCloseBtn={true} onClose={() => handleReminderModal("drink", false)}>
+                <div className="m-2">
+                    <div className="m-10 mx-20">
+                        <div className="flex justify-center grid-cols-1">
+                            <ReminderIcon/>
+                        </div>
+                        <div className="flex justify-center grid-cols-1 mt-2 ">
+                            Time's Up!
+                        </div>
+                        <div className="flex justify-center grid-cols-1 mt-2 font-light">
+                            Please drink your water.
+                        </div>
+                        </div>
+                    <div className="flex justify-end"> 
+                    <ButtonWrapper onClick={() => handleReminderModal("drink", false)}>
+                        <>
+                            repeat
+                        </>
+                    </ButtonWrapper>
+                    </div>
                 </div>
             </Modal>
         </SectionWrapper>
