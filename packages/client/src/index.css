@@ -60,3 +60,7 @@ code {
 .solid-border {
     border: solid 3px black;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}

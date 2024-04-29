@@ -8,12 +8,13 @@ import Occupied2NookSVG from "../../images/deskOccupied2.svg"
 import Occupied3NookSVG from "../../images/deskOccupied3.svg"
 import { usePlayers } from '../../hooks/usePlayers'
 import { Player } from '../Player'
+import { Content } from 'antd/es/layout/layout'
 
 export function Room() {
     const players = usePlayers();
 
     return (
-        <SectionWrapper className="h-full">
+        <SectionWrapper className='h-full'>
             <SectionHeader
                 section={Section.Room}
                 title={'#voice-channel-name'}
@@ -34,19 +35,119 @@ export function Room() {
                 </Card>
             </Flex>
             {/** //TODO: needs to polish arrangement of desks */}
-            <Row justify="start">
-                { players.map((p) => (
-                    <Col className='m-1'>
-                        <div></div>
-                        <Player key={p.userId} {...p} />
-                        <img src={EmptyNookSVG} width={100} height={'auto'}/>
-                    </Col>
-                ))}
-                {/* <Col className='m-1'><img src={Occupied1NookSVG} width={80} height={'auto'}/></Col>
-                <Col className='m-1'><img src={Occupied2NookSVG} width={80} height={'auto'}/></Col>
-                <Col className='m-1'><img src={Occupied3NookSVG} width={80} height={'auto'}/></Col>
-                <Col className='m-1'><img src={Occupied3NookSVG} width={80} height={'auto'}/></Col> */}
-            </Row>
+            <Content className='overflow-y-auto overflow-x-hidden scroll-smooth mt-8' style={{height: '75vh'}}>
+                <Row gutter={[8, 8]}>
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    { players.map((p) => (
+                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                    ))}
+                    {/* <Col className='m-1'><img src={Occupied1NookSVG} width={80} height={'auto'}/></Col>
+                    <Col className='m-1'><img src={Occupied2NookSVG} width={80} height={'auto'}/></Col>
+                    <Col className='m-1'><img src={Occupied3NookSVG} width={80} height={'auto'}/></Col>
+                    <Col className='m-1'><img src={Occupied3NookSVG} width={80} height={'auto'}/></Col> */}
+                </Row>
+            </Content>
         </SectionWrapper>
     )
 }
