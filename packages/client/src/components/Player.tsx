@@ -22,7 +22,8 @@ export function Player({ avatarUri, name, talking }: TPlayerOptions) {
             <img className='player__desk' src={Occupied1NookSVG} width={100} height={'auto'}/>
             {/* <img className='player__desk' src={Occupied2NookSVG} width={100} height={'auto'}/> */}
             {/* <img className='player__desk' src={Occupied3NookSVG} width={100} height={'auto'}/> */}
-            <div>{name}</div>
+            <div className='text-sm'>{name}</div>
+            <div className='text-gray-500'>elapsed time here</div>
         </div>
     );
 }

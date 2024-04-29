@@ -34,16 +34,13 @@ export function Room() {
                     leaderboard
                 </Card>
             </Flex>
-            {/** //TODO: needs to polish arrangement of desks */}
             <Content className='overflow-y-auto overflow-x-hidden scroll-smooth mt-8' style={{height: '75vh'}}>
                 <Row gutter={[8, 48]}>
                     { players.map((p) => (
-                        <Col span={4}><Player key={p.userId} {...p} /></Col>
+                        <Col span={4}>
+                            <Player key={p.userId} {...p} />
+                        </Col>
                     ))}
-                    {/* <Col className='m-1'><img src={Occupied1NookSVG} width={80} height={'auto'}/></Col>
-                    <Col className='m-1'><img src={Occupied2NookSVG} width={80} height={'auto'}/></Col>
-                    <Col className='m-1'><img src={Occupied3NookSVG} width={80} height={'auto'}/></Col>
-                    <Col className='m-1'><img src={Occupied3NookSVG} width={80} height={'auto'}/></Col> */}
                 </Row>
             </Content>
         </SectionWrapper>
