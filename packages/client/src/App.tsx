@@ -13,6 +13,5 @@ export default function App() {
                 <MainActivity />
             </PlayersContextProvider>
         </AuthenticatedContextProvider>
-    );
-    // return <MainActivity />
+    )
 }
