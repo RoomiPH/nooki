@@ -62,7 +62,7 @@ router.post('/token', async (req: Request, res: Response) => {
 })
 
 router.get('/', (req: Request, res: Response) => {
-    res.send(`Hello World! Welcome to Eraya's Nooki Server!`)
+    res.send(`Hello World! Welcome to Eraya's Nooki Server!!`)
 })
 
 // Using a flat route in dev to match the vite server proxy config
