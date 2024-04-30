@@ -4,7 +4,7 @@ import { TodoContent } from './Content';
 
 export function Todo() {
     return (
-        <SectionWrapper className="h-2/4">
+        <SectionWrapper className="h-full">
             <div>
                 <SectionHeader section={Section.Todo} title={'to-do list'} />
                 <TodoContent />
