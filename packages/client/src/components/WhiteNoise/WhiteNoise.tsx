@@ -4,7 +4,7 @@ import { Spotify } from './Spotify';
 
 export function WhiteNoise() {
     return (
-        <SectionWrapper className="h-1/2">
+        <SectionWrapper className="h-1/5">
             <div>
                 <SectionHeader
                     section={Section.WhiteNoise}
