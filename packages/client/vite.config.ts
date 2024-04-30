@@ -13,7 +13,7 @@ export default defineConfig({
     server: {
         proxy: {
             '/api': {
-                target: 'http://3.27.225.51:3001',
+                target: 'http://nooki.eraya.tech:3001',
                 changeOrigin: true,
                 secure: false,
                 ws: true,
