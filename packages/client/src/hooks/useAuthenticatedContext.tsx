@@ -103,7 +103,7 @@ function useAuthenticatedContextSetup() {
 
             // Retrieve an access_token from your embedded app's server
             const response = await fetch(
-                'http://nooki.eraya.tech:4173/api/token/api/token',
+                'http://nooki.eraya.tech:3001/api/token/api/token',
                 {
                     method: 'POST',
                     headers: {
