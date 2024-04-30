@@ -1,68 +1,87 @@
-import { Schema, MapSchema, type } from '@colyseus/schema'
-import { TPlayerOptions, Player } from './Player'
+import { Schema, MapSchema, type } from '@colyseus/schema';
+import { TPlayerOptions, Player } from './Player';
+import { Notes, NoteState } from './Notes';
 
 export interface IState {
-    roomName: string
-    channelId: string
+    roomName: string;
+    channelId: string;
+}
+
+export interface ClientOptions {
+    instanceId: string;
+    channelId: string;
+    roomName: string;
+    userId: string;
+    name: string;
+    avatarUri: string;
 }
 
 export class State extends Schema {
     @type({ map: Player })
-    players = new MapSchema<Player>()
+    players = new MapSchema<Player>();
+
+    @type(Notes)
+    notes: Notes = new Notes();
 
     @type('string')
-    public roomName: string
+    public roomName: string;
 
     @type('string')
-    public channelId: string
+    public channelId: string;
 
-    serverAttribute = 'this attribute wont be sent to the client-side'
+    serverAttribute = 'this attribute wont be sent to the client-side';
 
     // Init
     constructor(attributes: IState) {
-        super()
-        this.roomName = attributes.roomName
-        this.channelId = attributes.channelId
+        super();
+        this.roomName = attributes.roomName;
+        this.channelId = attributes.channelId;
     }
 
     private _getPlayer(sessionId: string): Player | undefined {
         return Array.from(this.players.values()).find(
             (p) => p.sessionId === sessionId
-        )
+        );
     }
 
-    createPlayer(sessionId: string, playerOptions: TPlayerOptions) {
+    createPlayer(sessionId: string, clientOptions: ClientOptions) {
         const existingPlayer = Array.from(this.players.values()).find(
             (p) => p.sessionId === sessionId
-        )
+        );
         if (existingPlayer == null) {
             this.players.set(
-                playerOptions.userId,
-                new Player({ ...playerOptions, sessionId })
-            )
+                clientOptions.userId,
+                new Player({
+                    userId: clientOptions.userId,
+                    avatarUri: clientOptions.avatarUri,
+                    name: clientOptions.name,
+                    talking: false,
+                    sessionId,
+                })
+            );
         }
     }
 
     removePlayer(sessionId: string) {
         const player = Array.from(this.players.values()).find(
             (p) => p.sessionId === sessionId
-        )
+        );
         if (player != null) {
-            this.players.delete(player.userId)
+            this.players.delete(player.userId);
         }
     }
 
     startTalking(sessionId: string) {
-        const player = this._getPlayer(sessionId)
+        const player = this._getPlayer(sessionId);
         if (player != null) {
-            player.talking = true
+            player.talking = true;
         }
     }
 
     stopTalking(sessionId: string) {
-        const player = this._getPlayer(sessionId)
+        const player = this._getPlayer(sessionId);
         if (player != null) {
-            player.talking = false
+            player.talking = false;
         }
     }
 }

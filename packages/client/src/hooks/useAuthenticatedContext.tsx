@@ -14,6 +14,7 @@ import type {
     TAuthenticatedContext,
 } from '../types';
 import { getUserDisplayName } from '../utils/getUserDisplayName';
+import { Notes } from '../../../server/src/entities/Notes';
 
 const AuthenticatedContext = React.createContext<TAuthenticatedContext>({
     user: {
@@ -169,6 +170,7 @@ function useAuthenticatedContextSetup() {
 
             // The second argument has to include for the room as well as the current player
             const newRoom = await client.joinOrCreate<State>(GAME_NAME, {
+                instanceId: discordSdk.instanceId,
                 channelId: discordSdk.channelId,
                 roomName,
                 userId: newAuth.user.id,
