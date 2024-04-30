@@ -57,7 +57,7 @@ export function Room() {
                 >
                     <TextArea
                         rows={2}
-                        placeholder="Broadcast something to everyone"
+                        placeholder="Set your agenda"
                         value={textAreaValue}
                         onChange={handleBroadcast}
                         styles={{ textarea: { fontSize: '11px' } }}

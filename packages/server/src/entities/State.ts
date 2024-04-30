@@ -57,6 +57,7 @@ export class State extends Schema {
                     name: clientOptions.name,
                     talking: false,
                     sessionId,
+                    joinedAt: new Date().toISOString(),
                 })
             );
         }
