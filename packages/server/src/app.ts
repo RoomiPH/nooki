@@ -61,6 +61,10 @@ router.post('/token', async (req: Request, res: Response) => {
     res.send({ access_token })
 })
 
+router.get('/', (req: Request, res: Response) => {
+    res.send('Hello World!')
+})
+
 // Using a flat route in dev to match the vite server proxy config
 app.use(process.env.NODE_ENV === 'production' ? '/api' : '/', router)
 
