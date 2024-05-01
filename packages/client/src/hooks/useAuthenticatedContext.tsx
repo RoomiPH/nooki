@@ -114,8 +114,8 @@ function useAuthenticatedContextSetup() {
                         code,
                     }),
                 }
-            )
-            const { access_token } = await response.json()
+            );
+            const { access_token } = await response.json();
 
             // Authenticate with Discord client (using the access_token)
             const newAuth: TAuthenticateResponse =

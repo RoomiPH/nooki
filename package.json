@@ -9,10 +9,5 @@
     "tunnel": "cloudflared tunnel --url http://localhost:3000"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "classnames": "^2.5.1",
-    "react-switch": "^7.0.0",
-    "use-sound": "^4.0.1"
-  }
+  "license": "ISC"
 }
