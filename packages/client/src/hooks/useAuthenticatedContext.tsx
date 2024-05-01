@@ -45,9 +45,9 @@ export function AuthenticatedContextProvider({
 }) {
     const authenticatedContext = useAuthenticatedContextSetup()
 
-    if (authenticatedContext == null) {
-        return <LoadingScreen />
-    }
+    // if (authenticatedContext == null) {
+    //     return <LoadingScreen />
+    // }
 
     return (
         <AuthenticatedContext.Provider value={authenticatedContext}>
