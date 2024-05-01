@@ -103,16 +103,19 @@ function useAuthenticatedContextSetup() {
             });
 
             // Retrieve an access_token from your embedded app's server
-            const response = await fetch('/api/token', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    code,
-                }),
-            });
-            const { access_token } = await response.json();
+            const response = await fetch(
+                'http://nooki.eraya.tech:3001/api/token',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        code,
+                    }),
+                }
+            )
+            const { access_token } = await response.json()
 
             // Authenticate with Discord client (using the access_token)
             const newAuth: TAuthenticateResponse =
