@@ -294,5 +294,5 @@ export function Timer() {
                 </div>
             </Modal>
         </SectionWrapper>
-    )
+    );
 }

@@ -1,0 +1,35 @@
+input.ant-input:active,
+input.ant-input:focus {
+    border: solid 1px black !important;
+}
+
+button.ant-btn:hover {
+    background-color: black !important;
+}
+
+.ant-checkbox-checked span.ant-checkbox-inner {
+    background-color: black;
+    border-radius: 50%;
+}
+
+.ant-checkbox span.ant-checkbox-inner {
+    border-radius: 50%;
+}
+
+input[type='checkbox']:checked + label::after {
+    content: '';
+    position: absolute;
+    width: 1.2ex;
+    height: 0.4ex;
+    background: rgba(0, 0, 0, 0);
+    top: 0.9ex;
+    left: 0.4ex;
+    border: 3px solid blue;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}

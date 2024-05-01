@@ -1,3 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Quicksand";
+    src: url("./fonts/Quicksand/Quicksand-VariableFont_wght.ttf");
+  }
+
+@layer base {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-sans !important;
+        font-weight: bold !important;
+    }
+}
+
+@layer base {
+    p, body, textarea, div {
+        @apply font-sans !important;
+        font-weight: 600 !important
+    }
+}
+
 html,
 body,
 #root {
@@ -8,9 +36,19 @@ body,
 }
 
 body {
-    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-        'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-        'Helvetica Neue', sans-serif;
+    font-family:
+        'Quicksand',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        'Roboto',
+        'Oxygen',
+        'Ubuntu',
+        'Cantarell',
+        'Fira Sans',
+        'Droid Sans',
+        'Helvetica Neue',
+        sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: white;
@@ -20,4 +58,21 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
+}
+
+.solid-border {
+    border: solid 3px black;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.main-activity-bg-image {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: url('./images/mainActivityBg.svg');
 }
