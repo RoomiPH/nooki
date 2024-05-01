@@ -1,6 +1,6 @@
 import SectionHeader, { Section } from '../Section/SectionHeader';
 import SectionWrapper from '../Section/SectionWrapper';
-import { Spotify } from './Spotify';
+import { MusicPlayer } from './MusicPlayer';
 
 export function WhiteNoise() {
     return (
@@ -10,7 +10,7 @@ export function WhiteNoise() {
                     section={Section.WhiteNoise}
                     title={'white noise'}
                 />
-                <Spotify />
+                <MusicPlayer />
             </div>
         </SectionWrapper>
     );
